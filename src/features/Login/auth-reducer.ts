@@ -3,6 +3,8 @@ import {authAPI, LoginParamsType} from "api/todolists-api"
 import {handleServerAppError, handleServerNetworkError} from "utils/error-utils"
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {appAction} from "app/app-reducer";
+import {tasksAction} from "features/TodolistsList/tasks-reducer";
+import {todolistsAction} from "features/TodolistsList/todolists-reducer";
 
 
 //https://immerjs.github.io/immer/update-patterns/#array-mutations
@@ -51,6 +53,8 @@ export const logoutTC = () => (dispatch: Dispatch) => {
             if (res.data.resultCode === 0) {
                 dispatch(authAction.setIsLoggedIn({isLoggedIn:false}))
                 dispatch(appAction.setAppStatus({status:"succeeded"}))
+                dispatch(tasksAction.clearTasks())
+                dispatch(todolistsAction.clearTodolists())
             } else {
                 handleServerAppError(res.data, dispatch)
             }
