@@ -60,8 +60,8 @@ const slice = createSlice({
                 })
 
             })
-            .addCase(clearTasksAndTodolists.type,()=>{
-                return {}
+            .addCase(clearTasksAndTodolists,(state,action)=>{
+                return action.payload.tasks
             })
     }
 })
