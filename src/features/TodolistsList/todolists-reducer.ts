@@ -4,6 +4,7 @@ import {appAction, RequestStatusType} from "app/app-reducer"
 import {handleServerNetworkError} from "utils/error-utils"
 import {AppThunk} from "app/store"
 import {createSlice, current, PayloadAction} from "@reduxjs/toolkit";
+import {clearTasksAndTodolists} from "common/actions/common.actions";
 
 
 
@@ -52,9 +53,15 @@ const slice = createSlice({
             // 2 variant
             //return action.payload.todolists.map(tl => ({...tl, filter: 'all', entityStatus: 'idle'}))
         },
-        clearTodolists: () => {
+        /*clearTodolists: () => {
             return []
-        }
+        }*/
+    },
+    extraReducers:(builder)=>{
+        builder
+            .addCase(clearTasksAndTodolists.type,()=>{
+                return []
+            })
     }
 })
 
