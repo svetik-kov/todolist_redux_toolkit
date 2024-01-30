@@ -6,18 +6,16 @@ import { appReducer } from "./app-reducer"
 import { authReducer } from "../features/Login/auth-reducer"
 import {configureStore} from "@reduxjs/toolkit";
 
-// объединяя reducer-ы с помощью combineReducers,
-// мы задаём структуру нашего единственного объекта-состояния
-const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  todolists: todolistsReducer,
-  app: appReducer,
-  auth: authReducer,
-})
+
 // непосредственно создаём store
 /*export const store_ = createStore(rootReducer, applyMiddleware(thunkMiddleware))*/
 export const store=configureStore({
-  reducer:rootReducer
+  reducer:{
+    tasks: tasksReducer,
+    todolists: todolistsReducer,
+    app: appReducer,
+    auth: authReducer,
+  }
 })
 // определить автоматически тип всего объекта состояния
 //export type AppRootStateType_ = ReturnType<typeof rootReducer>

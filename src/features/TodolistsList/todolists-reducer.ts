@@ -3,7 +3,7 @@ import {Dispatch} from "redux"
 import {appAction, RequestStatusType} from "app/app-reducer"
 import {handleServerNetworkError} from "utils/error-utils"
 import {AppThunk} from "app/store"
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, current, PayloadAction} from "@reduxjs/toolkit";
 
 
 
@@ -19,6 +19,7 @@ const slice = createSlice({
         },
         addTodolist: (state, action: PayloadAction<{ todolist: TodolistType }>) => {
             // return [{ ...action.todolist, filter: "all", entityStatus: "idle" }, ...state]
+          console.log(current(state))
             state.unshift({...action.payload.todolist, filter: "all", entityStatus: "idle"})
         },
         changeTodolistTitle: (state, action: PayloadAction<{ id: string, title: string }>) => {
