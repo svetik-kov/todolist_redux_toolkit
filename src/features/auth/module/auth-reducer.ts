@@ -1,11 +1,12 @@
 import {Dispatch} from "redux"
-import {authAPI, LoginParamsType} from "api/todolists-api"
-import {handleServerAppError, handleServerNetworkError} from "utils/error-utils"
+import {handleServerNetworkError} from "common/utils/handleServerNetworkError"
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {appAction} from "app/app-reducer";
-import {ResultCode, tasksAction} from "features/TodolistsList/tasks-reducer";
-import {todolistsAction} from "features/TodolistsList/todolists-reducer";
+import {ResultCode} from "features/todolistsList/tasks-reducer";
 import {clearTasksAndTodolists} from "common/actions/common.actions";
+import {handleServerAppError} from "common/utils/handleServerAppError";
+import {LoginParamsType} from "features/auth/api/authApi.types";
+import {authAPI} from "features/auth/api/authApi";
 
 
 //https://immerjs.github.io/immer/update-patterns/#array-mutations

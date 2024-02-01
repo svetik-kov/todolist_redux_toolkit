@@ -1,4 +1,4 @@
-import {appAction, AppInitialState, appReducer} from "./app-reducer"
+import {appAction, AppInitialState, appReducer} from "app/app-reducer"
 
 let startState: AppInitialState
 
