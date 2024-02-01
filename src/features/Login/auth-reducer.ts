@@ -3,7 +3,7 @@ import {authAPI, LoginParamsType} from "api/todolists-api"
 import {handleServerAppError, handleServerNetworkError} from "utils/error-utils"
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {appAction} from "app/app-reducer";
-import {tasksAction} from "features/TodolistsList/tasks-reducer";
+import {ResultCode, tasksAction} from "features/TodolistsList/tasks-reducer";
 import {todolistsAction} from "features/TodolistsList/todolists-reducer";
 import {clearTasksAndTodolists} from "common/actions/common.actions";
 
@@ -35,7 +35,7 @@ export const loginTC =
         authAPI
             .login(data)
             .then((res) => {
-                if (res.data.resultCode === 0) {
+                if (res.data.resultCode === ResultCode.success) {
                     dispatch(authAction.setIsLoggedIn({isLoggedIn:true}))
                     dispatch(appAction.setAppStatus({status:"succeeded"}))
                 } else {
@@ -51,7 +51,7 @@ export const logoutTC = () => (dispatch: Dispatch) => {
     authAPI
         .logout()
         .then((res) => {
-            if (res.data.resultCode === 0) {
+            if (res.data.resultCode === ResultCode.success) {
                 dispatch(authAction.setIsLoggedIn({isLoggedIn:false}))
                 dispatch(appAction.setAppStatus({status:"succeeded"}))
                 dispatch(clearTasksAndTodolists())

@@ -2,6 +2,7 @@ import { Dispatch } from "redux"
 import { authAPI } from "../api/todolists-api"
 import {authAction} from "features/Login/auth-reducer";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {ResultCode} from "features/TodolistsList/tasks-reducer";
 
 
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed"
@@ -29,7 +30,7 @@ const slice=createSlice({
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
   authAPI.me().then((res) => {
-    if (res.data.resultCode === 0) {
+    if (res.data.resultCode === ResultCode.success) {
       dispatch(authAction.setIsLoggedIn({isLoggedIn:true}))
     } else {
     }
